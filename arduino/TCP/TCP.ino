@@ -29,7 +29,7 @@ bool is_OK_()
 			buffer += ch;
 			if(ch == '\n')
 			{
-				if(buffer.startsWith("_OK_"))
+				if(buffer.startsWith("OK"))
 					return true;
 				// Clear buffer
 				buffer = "";
@@ -52,22 +52,27 @@ void repeatIfNot_OK_(String cmd)
 	while(!is_OK_() && cnt<maxTimes);
 }
 
-bool isError(String cmd)
+bool isError(String cmd, String OKStr)
 {
 	int _OK_ = 1, _PENDING_ = 0, _ERROR_ = -1;
 	int error = _PENDING_;
-	bool iterEnd = false;
+
 	while(Serial.available())
 	{
 		char ch = readChar();
 		if(error != _PENDING_)
 			continue;
 
-		if(ch == 'O')
+		if(ch == OKStr[0])
 		{
-			ch = readChar();
-			if( ch == 'K' )
-				error = _OK_;
+			for(int i=1; i<OKStr.length(); i++)
+			{
+				ch = readChar();
+				if( ch != OKStr[i] )
+					break;
+				else if(i == OKStr.length()-1)
+					error = _OK_;
+			}
 		}
 		if(ch == 'E')
 		{
@@ -75,7 +80,7 @@ bool isError(String cmd)
 			buffer += ch;
 			for(int i=0; i<4; i++)
 				buffer += readChar();
-			if( buffer.equals("_ERROR_") )
+			if( buffer.equals("ERROR") )
 				error = _ERROR_;
 		}
 	}
@@ -106,9 +111,20 @@ void repeatIfError(String cmd)
 		delay(500);
 		cnt++;
 	}
-	while(isError(cmd) && cnt<maxTimes);
+	while(isError(cmd, "OK") && cnt<maxTimes);
 }
 
+void repeatIfNotConOK(String cmd)
+{
+	int cnt = 0;
+	int maxTimes = 10;
+	do {
+		Serial.println(cmd);
+		delay(500);
+		cnt++;
+	}
+	while(isError(cmd, "CONNECT OK") && cnt<maxTimes);
+}
 
 
 
@@ -136,16 +152,20 @@ void loop()
 	delay(5000);
 	repeatIfError("AT+CIICR");
 	delay(2000);
-	repeatIfError("AT+CIFSR");
+	Serial.println("AT+CIFSR");
 	delay(2000);
 	repeatIfError("AT+CDNSGIP=\"www.baidu.com\"");
 	delay(2000);
 	delay(100);
-	//Serial.write(26);
-	// Declare buffer
-	String buffer;
-	int cnt = 0;
-
+	repeatIfNotConOK("AT+CIPSTART=\"TCP\",\"baidu.com\",\"80\"");
+	delay(2000);
+	repeatIfError("AT+CIPSEND");
+	delay(500);
+	Serial.println("An Http Post command");
+	Serial.write(26);
+	
+	while(Serial.available())
+		readChar();
 	Serial.print('#');
 	Serial.print( output );
 	while(1);
