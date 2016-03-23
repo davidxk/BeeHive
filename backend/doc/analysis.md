@@ -16,16 +16,27 @@ That's a few classes
 
 ####SaveServelet
 * reads out the data from <form> according to agreed key protocol
+* initiate a Report object with given data
 * saves the data with ReportDAO save(report)
+
+> ######Protocol
+* the first three letters
 
 ####Report
 * a model class with only getter and setter methods
+
+>######members
+* co1
+* temperature
+* humidity
+* gps
+* timestamp
 
 ####ReportDAO
 * void save(Report report)
 * List<Report> get(int nRecords)
 
-####DisplayServlet
+####RetrieveServlet
 * calls on get(n)
 * calculate the statistics with Statistician
 * make the list acquirable by front end
