@@ -84,6 +84,11 @@ bool isError(String cmd, String OKStr)
 				error = _ERROR_;
 		}
 	}
+	for(int i=0; i<20; i++)
+	{
+			while(Serial.available())
+			readChar();
+	}
 	cmd[0] = '@';
 	if(error == _ERROR_)
 	{
@@ -152,13 +157,16 @@ void loop()
 	Serial.println("AT+CIFSR");
 	delay(500);
 	repeatIfError("AT+CDNSGIP=\"www.baidu.com\"", 3000);
-	repeatIfNotConOK("AT+CIPSTART=\"TCP\",\"baidu.com\",\"80\"");
+	repeatIfNotConOK("AT+CIPSTART=\"TCP\",\"t.tt\",\"80\"");
 	repeatIfError("AT+CIPSEND");
 	Serial.println("An Http Post command");
 	Serial.write(26);
-	
-	while(Serial.available())
-		readChar();
+	for(int i=0; i<20; i++)
+	{
+		delay(500);
+		while(Serial.available())
+			readChar();
+	}
 	Serial.print('#');
 	Serial.print( output );
 	while(1);
