@@ -102,13 +102,13 @@ bool isError(String cmd, String OKStr)
 	return false;
 }
 
-void repeatIfError(String cmd)
+void repeatIfError(String cmd, int delayTime = 500)
 {
 	int cnt = 0;
 	int maxTimes = 10;
 	do {
 		Serial.println(cmd);
-		delay(500);
+		delay(delayTime);
 		cnt++;
 	}
 	while(isError(cmd, "OK") && cnt<maxTimes);
@@ -120,7 +120,7 @@ void repeatIfNotConOK(String cmd)
 	int maxTimes = 10;
 	do {
 		Serial.println(cmd);
-		delay(500);
+		delay(5000);
 		cnt++;
 	}
 	while(isError(cmd, "CONNECT OK") && cnt<maxTimes);
@@ -147,20 +147,13 @@ void loop()
 	//repeatIfError("AT+CSQ");
 	repeatIfError("AT");
 
-	delay(2000);
 	repeatIfError("AT+CSTT=\"CMNET\"");
-	delay(5000);
-	repeatIfError("AT+CIICR");
-	delay(2000);
+	repeatIfError("AT+CIICR", 2000);
 	Serial.println("AT+CIFSR");
-	delay(2000);
-	repeatIfError("AT+CDNSGIP=\"www.baidu.com\"");
-	delay(2000);
-	delay(100);
-	repeatIfNotConOK("AT+CIPSTART=\"TCP\",\"baidu.com\",\"80\"");
-	delay(2000);
-	repeatIfError("AT+CIPSEND");
 	delay(500);
+	repeatIfError("AT+CDNSGIP=\"www.baidu.com\"", 3000);
+	repeatIfNotConOK("AT+CIPSTART=\"TCP\",\"baidu.com\",\"80\"");
+	repeatIfError("AT+CIPSEND");
 	Serial.println("An Http Post command");
 	Serial.write(26);
 	
