@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import beehive.bean.Report;
+import beehive.bean.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -29,9 +30,13 @@ public class Test1 {
          * me.gacl.mapping.userMapper是userMapper.xml文件中mapper标签的namespace属性的值，
          * getUser是select标签的id属性值，通过select标签的id属性值就可以找到要执行的SQL
          */
-        String statement = "beehive.mapper.reportMapper.getReport";//映射sql的标识字符串
+        String getReportSql = "beehive.mapper.reportMapper.getReport";//映射sql的标识字符串
+        String getUserSql = "beehive.mapper.userMapper.getUser";//映射sql的标识字符串
         //执行查询返回一个唯一user对象的sql
-        Report report = session.selectOne(statement, 1);
+        Report report = session.selectOne(getReportSql, 1);
         System.out.println(report);
+        
+        User user = session.selectOne(getUserSql, 111);
+        System.out.println(user);
     }
 }

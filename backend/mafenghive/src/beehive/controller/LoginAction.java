@@ -2,14 +2,19 @@ package beehive.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beehive.dao.UserDao;
+import beehive.bean.User;
+
 public class LoginAction extends HttpServlet {
 
+	public UserDao userDao;
 	public LoginAction() {
 		super();
 	}
@@ -24,14 +29,13 @@ public class LoginAction extends HttpServlet {
 		
 		// Read report data from <form>
 		int phone = Integer.parseInt( request.getParameter("phone") );
-		String password = request.getParameter("password");
-
+		String password = request.getParameter("password"); 
 		// If user phone not exist, forward to UsrNotExist
-		//if(!UserDAO.has(phone))
+		if(!userDao.has(phone))
 
 		// Call ReportDao to get the object
-		//user = UserDAO.get(phone);
-		//if(password == user.password)
+		beehive.bean.User user = userDao.getUser(phone);
+		if(password == user.password)
 		// Forward to DisplayAction
 		//else
 		// Forward to password error page

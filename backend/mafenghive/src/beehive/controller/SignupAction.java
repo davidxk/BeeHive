@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beehive.bean.User;
+import beehive.dao.UserDao;
 
 public class SignupAction extends HttpServlet {
-
+	public UserDao userDao;
 	public SignupAction() {
 		super();
 	}
@@ -30,13 +31,11 @@ public class SignupAction extends HttpServlet {
 		String password = request.getParameter("password");
 
 		// If user phone exists, forward to UsrExists
-		//if(UserDAO.has(phone))
+		if(userDao.has(phone))
 
-		// Initiate a Report object
-		User user = new User(phone, nickname, password);
-
+		// Initiate a User object
 		// Call ReportDao to save the object
-		//UserDAO.save(user);
+		userDao.save( new User(phone, nickname, password) );
 
 		// Forward to DisplayAction
 	}

@@ -19,6 +19,7 @@
    
     <mappers>
         <mapper resource="beehive/mapper/reportMapper.xml"/>
+        <mapper resource="beehive/mapper/userMapper.xml"/>
     </mappers>
     
 </configuration>
