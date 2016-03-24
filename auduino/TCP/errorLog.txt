@@ -1,0 +1,12 @@
+at+cipstart="tcp","www.baidu.com","1230"
+
+OK
+AT+CIPSTATUS
+
+OK
+
+STATE: TCP CONNECTING
+
+STATE: TCP CLOSED
+
+CONNECT FAIL

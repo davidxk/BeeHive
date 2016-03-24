@@ -1,0 +1,29 @@
+AT
+
+OK
+
+GPS Ready
+AT+CSTT="CMNET"
+
+OK
+AT+ciicr
+
+OK
+at+cifsr
+
+10.47.18.242
+at+cdnsgip="www.baidu.com"
+
+OK
+
++CDNSGIP: 1,"www.baidu.com","111.13.100.91"
+at+cipstart="tcp","www.baidu.com","80"
+
+OK
+
+CONNECT OK
+at+cipsend
+
+> 123
+
+SEND OK

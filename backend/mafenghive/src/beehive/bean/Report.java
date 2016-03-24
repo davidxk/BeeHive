@@ -71,4 +71,8 @@ public class Report {
 	public void setUltraviolet(float ultraviolet) {
 		this.ultraviolet = ultraviolet;
 	}
+	@Override
+    public String toString() {
+        return "Report [phone=" + phone + ", timestamp=" + timestamp + "]";
+    }
 }
