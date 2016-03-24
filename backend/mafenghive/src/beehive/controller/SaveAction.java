@@ -39,15 +39,18 @@ public class SaveAction extends HttpServlet {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+		
 		// Read report data from <form>
 		String keys[] = { "pho", "tim", "co1", "tem", "hum", "noi", "ult" };
 		HashMap<String, String> values = new HashMap<String, String>();
 		for(String key: keys)
 			values.put( key, request.getParameter(key) );
+		
 		// If user phone not exist, return
 		int phone = Integer.parseInt(values.get("pho"));
 		//if(!UserDAO.has(phone))
 			//return;
+
 		// Initiate a Report object
 		Date timestamp = new Date();
 		Report report = new Report(phone, timestamp,
@@ -57,6 +60,7 @@ public class SaveAction extends HttpServlet {
 				Float.parseFloat(values.get("noi")),
 				Float.parseFloat(values.get("ult"))
 				);
+
 		// Call ReportDao to save the object
 		//ReportDAO.save(report);
 	}
