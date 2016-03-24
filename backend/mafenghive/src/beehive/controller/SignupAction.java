@@ -31,6 +31,7 @@ public class SignupAction extends HttpServlet {
 
 		// If user phone exists, forward to UsrExists
 		//if(UserDAO.has(phone))
+		//response.sendRedirect("??");
 
 		// Initiate a Report object
 		User user = new User(phone, nickname, password);
@@ -39,6 +40,7 @@ public class SignupAction extends HttpServlet {
 		//UserDAO.save(user);
 
 		// Forward to DisplayAction
+		response.sendRedirect("servlet/DisplayAction");
 	}
 
 }

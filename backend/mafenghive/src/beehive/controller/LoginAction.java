@@ -28,12 +28,13 @@ public class LoginAction extends HttpServlet {
 
 		// If user phone not exist, forward to UsrNotExist
 		//if(!UserDAO.has(phone))
+		//response.sendRedirect("??");
 
 		// Call ReportDao to get the object
 		//user = UserDAO.get(phone);
 		//if(password == user.password)
-		// Forward to DisplayAction
+		//response.sendRedirect("servlet/DisplayAction");
 		//else
-		// Forward to password error page
+		//response.sendRedirect("??");
 	}
 }
