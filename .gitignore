@@ -32,3 +32,11 @@
 
 # Mac
 *.DS_Store
+
+# My Eclipse
+*.classpath
+*.mymetadata	
+*.settings
+*.project
+*.settings*
+*.class

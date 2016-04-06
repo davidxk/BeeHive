@@ -2,8 +2,6 @@ package beehive.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Vector;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -41,24 +39,25 @@ public class SaveAction extends HttpServlet {
 		}
 		
 		// Read report data from <form>
+		final int key_len = 7;
 		String keys[] = { "pho", "tim", "co1", "tem", "hum", "noi", "ult" };
-		HashMap<String, String> values = new HashMap<String, String>();
-		for(String key: keys)
-			values.put( key, request.getParameter(key) );
+		String[] values = new String[key_len];
+		for(int i=0; i<key_len; i++)
+			values[i] = request.getParameter(keys[i]);
 		
 		// If user phone not exist, return
-		int phone = Integer.parseInt(values.get("pho"));
+		int phone = Integer.parseInt(values[0]);
 		//if(!UserDAO.has(phone))
 			//return;
 
 		// Initiate a Report object
 		Date timestamp = new Date();
 		Report report = new Report(phone, timestamp,
-				Float.parseFloat(values.get("co1")),
-				Float.parseFloat(values.get("tem")),
-				Float.parseFloat(values.get("hum")),
-				Float.parseFloat(values.get("noi")),
-				Float.parseFloat(values.get("ult"))
+				Float.parseFloat(values[2]),
+				Float.parseFloat(values[3]),
+				Float.parseFloat(values[4]),
+				Float.parseFloat(values[5]),
+				Float.parseFloat(values[6])
 				);
 
 		// Call ReportDao to save the object
