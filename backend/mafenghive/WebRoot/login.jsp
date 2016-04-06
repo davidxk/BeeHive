@@ -65,7 +65,7 @@
 
     <div class="login_padding" id="login_model">
 
-      <form action="Login.do" name="LoginForm" method="post">
+      <form action="/servlet/LoginAction" name="LoginForm" method="post">
 
           <!--<p style="font-size: 18px">用户登录</p>-->
           <div class="form-group">
@@ -76,7 +76,7 @@
           </div>
 
           <div class="form-group">
-            <input type="password" name="pwd"  class="form-control"
+            <input type="password" name="password"  class="form-control"
              placeholder="密码" required />
           </div>
         <div class="form-group">

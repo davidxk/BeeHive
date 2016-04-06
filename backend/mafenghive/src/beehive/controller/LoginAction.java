@@ -31,14 +31,16 @@ public class LoginAction extends HttpServlet {
 		int phone = Integer.parseInt( request.getParameter("phone") );
 		String password = request.getParameter("password"); 
 		// If user phone not exist, forward to UsrNotExist
-		//if(!userDao.has(phone))
-		//response.sendRedirect("??");
+		if(userDao == null)
+			response.sendRedirect("../page_not_found.jsp");
+		if(!userDao.has(phone))
+			response.sendRedirect("../user_not_found.jsp");
 
 		// Call ReportDao to get the object
 		User user = userDao.getUser(phone);
-		//if(password == user.password)
-		//response.sendRedirect("servlet/DisplayAction");
-		//else
-		//response.sendRedirect("??");
+		if(password == user.password)
+			response.sendRedirect("servlet/DisplayAction");
+		else
+			response.sendRedirect("../user_not_found.jsp");
 	}
 }
