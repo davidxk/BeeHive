@@ -9,7 +9,7 @@
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>SaveAction</servlet-name>
-    <servlet-class>beehive.SaveAction</servlet-class>
+    <servlet-class>beehive.controller.SaveAction</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
