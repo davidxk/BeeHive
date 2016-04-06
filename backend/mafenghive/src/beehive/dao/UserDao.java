@@ -50,10 +50,7 @@ public class UserDao {
 	 public User getUser(int phone){
 		 String statement = "beehive.mapper.userMapper.getUser";
 	     User user = session.selectOne(statement, phone);
-	     return user;
-	     
+	     return user;  
 	 }
-
-	 
 	 
 }
