@@ -17,7 +17,7 @@ import test.Test1;
 
 public class ReportDao {
 	 String resource = "conf.xml";
-     InputStream is = Test1.class.getClassLoader().getResourceAsStream(resource);
+     InputStream is = ReportDao.class.getClassLoader().getResourceAsStream(resource);
      SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
      SqlSession session = sessionFactory.openSession();
      
