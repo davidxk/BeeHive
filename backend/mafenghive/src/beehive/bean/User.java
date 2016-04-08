@@ -2,7 +2,7 @@ package beehive.bean;
 
 public class User {
 	// Member variable
-	public int phone;
+	public String phone;
 	public String nickname;
 	public String password;
 	
@@ -10,7 +10,7 @@ public class User {
 	public User() {
 		super();
 	}
-	public User(int phone, String nickname, String password) {
+	public User(String phone, String nickname, String password) {
 		super();
 		this.phone = phone;
 		this.nickname = nickname;
@@ -18,10 +18,10 @@ public class User {
 	}
 
 	// Getters and Setters
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getNickname() {

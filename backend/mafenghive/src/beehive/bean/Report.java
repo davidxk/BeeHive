@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Report {
 	// Member variables
-	public int phone;
+	public String phone;
 	public Date timestamp;
 	public float co;
 	public float temperature;
@@ -16,7 +16,7 @@ public class Report {
 	public Report() {
 		super();
 	}
-	public Report(int phone, Date timestamp, float co, float temperature,
+	public Report(String phone, Date timestamp, float co, float temperature,
 			float humidity, float noise, float ultraviolet) {
 		super();
 		this.phone = phone;
@@ -29,10 +29,10 @@ public class Report {
 	}
 	
 	// Getter and Setters
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public Date getTimestamp() {

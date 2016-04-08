@@ -2,11 +2,43 @@ byte gsmDriverPin[2] = { 2, 3 };
 unsigned char PhoneNum[24]={"AT+CMGS=\"13713748873\""};
 String output;
 
+// Gas Dht
+#include <dht11.h>
+dht11 DHT11;
+#define DHT11PIN 1
 
+// CO1
+int gas_din = 0;
+int gas_ain = A0;
+int co1_value;
+
+// Noise
+int sound_din=1;
+int sound_ain=A1;
+int noi_value;
+
+// Ultrviolet
+int uv_ain=A2;
+int ult_value;
+
+
+void connect()
+{
+	delay(5000);
+	char i;
+	Serial.println("AT+SAPBR=3,1,\"CONTYPE\",\"GPRS\"");
+	delay(500);
+	Serial.println("AT+SAPBR=3,1,\"APN\",\"cmnet\"");
+	delay(500);
+	Serial.println("AT+SAPBR=1,1");
+	delay(3000);
+	Serial.println("AT+HTTPINIT");
+	delay(500);
+}
 
 void setup()
 {
-	//Init the driver pins for GSM function
+	// Init the driver pins for GSM function
 	for(int i = 0 ; i < 2; i++)
 		pinMode(gsmDriverPin[i], OUTPUT);
 	digitalWrite(2,LOW);//Enable the GSM mode 
@@ -14,29 +46,52 @@ void setup()
 	delay(200);
 	Serial.begin(115200); //set the baud rate
 	delay(1000);//call ready
+
+	// GAS DHT
+	pinMode(gas_din,INPUT);
+	pinMode(gas_ain,INPUT);
+
+	// Noise
+	pinMode(sound_din,INPUT);
+	pinMode(sound_ain,INPUT);
+
+	// Ultrviolet
+	pinMode(uv_ain,INPUT);
+
+	connect();
 }
 
 void loop()
 {
+	// Get data from sensor
+	// Temperature and Humidity
+	int chk = DHT11.read(DHT11PIN);
+	// Gas Dht
+	co1_value = analogRead(gas_ain);
+	// Noise
+	noi_value = analogRead(sound_ain);
+	// Ultrviolet
+	ult_value=analogRead(uv_ain);
+
+	// Make http request
+	String post = "AT+HTTPPARA=\"URL\",\"http://1.waspwo.applinzi.com/servlet/SaveAction?";
+	Serial.println(post);
+
+	const int n_key = 7;
+	String keys[] = { "pho", "co1", "tem", "hum", "noi", "ult" };
+	String vals[] = { 111, char(co1_value), char(DHT11.temperature,
+			char(DHT11.humidity), char(noi_value), char(ult_value) };
+	for(int i=0; i<n_key; i++)
+	{
+		if(i != 0)
+			Serial.print("&");
+		Serial.print(keys[i]+"="+vals[i]);
+	}
+	Serial.println("\"");
+
+	// Send request to server
+	Serial.println("AT+HTTPACTION=0");
 	delay(5000);
-	char i;
-	Serial.println("AT+CSTT=\"CMNET\"");
-	delay(500);
-	Serial.println("AT+CIICR");
-	delay(2000);
-	Serial.println("AT+CIFSR");
-	delay(500);
-	Serial.println("AT+CDNSGIP=\"t.tt\"");
-	delay(500);
-	Serial.println("AT+CIPSTART=\"TCP\",\"t.tt\",\"80\"");
-	delay(2000);
-	Serial.println("AT+CIPSEND");
-	delay(500);
-	Serial.println("An Http Post command");
-	delay(500);
-	Serial.write(26);
-	//Add print here!
-	while(1);
 }
 
 /*

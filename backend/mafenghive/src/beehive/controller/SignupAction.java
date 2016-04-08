@@ -26,7 +26,7 @@ public class SignupAction extends HttpServlet {
 		}
 		
 		// Read report data from <form>
-		int phone = Integer.parseInt( request.getParameter("phone") );
+		String phone = request.getParameter("phone");
 		String nickname = request.getParameter("nickname");
 		String password = request.getParameter("password");
 

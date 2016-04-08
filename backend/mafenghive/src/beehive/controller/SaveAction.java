@@ -11,14 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beehive.bean.*;
+import beehive.dao.ReportDao;
+import beehive.dao.UserDao;
 
 public class SaveAction extends HttpServlet {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 1L;
-
+	private UserDao userDao = new UserDao();
+	private ReportDao reportDao = new ReportDao();
 	public SaveAction() {
 		super();
 	}
@@ -29,6 +31,7 @@ public class SaveAction extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
+		doPost(request, response);
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -46,9 +49,9 @@ public class SaveAction extends HttpServlet {
 			values.add( request.getParameter(key) );
 		
 		// If user phone not exist, return
-		int phone = Integer.parseInt(values.get(0));
-		//if(!UserDAO.has(phone))
-			//return;
+		String phone = values.get(0);
+		if(!userDao.has(phone))
+			return;
 
 		// Initiate a Report object
 		Date timestamp = new Date();
@@ -61,7 +64,7 @@ public class SaveAction extends HttpServlet {
 				);
 
 		// Call ReportDao to save the object
-		//ReportDAO.save(report);
+		reportDao.save(report);
 	}
 
 	public void init() throws ServletException {

@@ -18,7 +18,7 @@ public class UserDao {
      InputStream is = UserDao.class.getClassLoader().getResourceAsStream(resource);
      SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
      
-	 public boolean has(int phone){
+	 public boolean has(String phone){
 		 SqlSession session = sessionFactory.openSession();
 	     String statement = "beehive.mapper.userMapper.getUser";
 	     User user = session.selectOne(statement, phone);
@@ -47,7 +47,7 @@ public class UserDao {
 	        System.out.println(retResult);
 	 }
 	 
-	 public User getUser(int phone){
+	 public User getUser(String phone){
 		 SqlSession session = sessionFactory.openSession();
 		 String statement = "beehive.mapper.userMapper.getUser";
 	     User user = session.selectOne(statement, phone);

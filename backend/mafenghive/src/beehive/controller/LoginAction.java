@@ -28,7 +28,7 @@ public class LoginAction extends HttpServlet {
 		}
 		
 		// Read report data from <form>
-		int phone = Integer.parseInt( request.getParameter("phone") );
+		String phone = request.getParameter("phone");
 		String password = request.getParameter("password"); 
 		// If user phone not exist, forward to UsrNotExist
 		if(userDao == null)
