@@ -12,18 +12,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import test.Test1;
-
 
 public class UserDao {
 	 String resource = "conf.xml";
      InputStream is = UserDao.class.getClassLoader().getResourceAsStream(resource);
      SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
-     SqlSession session = sessionFactory.openSession();
      
 	 public boolean has(int phone){
+		 SqlSession session = sessionFactory.openSession();
 	     String statement = "beehive.mapper.userMapper.getUser";
 	     User user = session.selectOne(statement, phone);
+	     session.commit();
+	     session.close();
 	     if(user == null)
 	    	 return false;
 	     else
@@ -31,7 +31,7 @@ public class UserDao {
 	 }
 	 
 	 public void save(User user){
-	        SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
+	        SqlSession session = MyBatisUtil.getSqlSession(true);
 	        /**
 	         * 映射sql的标识字符串，
 	         * me.gacl.mapping.userMapper是userMapper.xml文件中mapper标签的namespace属性的值，
@@ -39,17 +39,20 @@ public class UserDao {
 	         */
 	        String statement = "beehive.mapper.userMapper.addUser";//映射sql的标识字符串
 	        //执行插入操作
-	        int retResult = sqlSession.insert(statement,user);
+	        int retResult = session.insert(statement,user);
 	        //手动提交事务
-	        sqlSession.commit();
+	        session.commit();
 	        //使用SqlSession执行完SQL之后需要关闭SqlSession
-	        sqlSession.close();
+	        session.close();
 	        System.out.println(retResult);
 	 }
 	 
 	 public User getUser(int phone){
+		 SqlSession session = sessionFactory.openSession();
 		 String statement = "beehive.mapper.userMapper.getUser";
 	     User user = session.selectOne(statement, phone);
+	     session.commit();
+	     session.close();
 	     return user;  
 	 }
 	 

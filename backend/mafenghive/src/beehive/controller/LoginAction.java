@@ -14,7 +14,7 @@ import beehive.bean.User;
 
 public class LoginAction extends HttpServlet {
 
-	public UserDao userDao;
+	private UserDao userDao = new UserDao();
 	public LoginAction() {
 		super();
 	}
@@ -32,14 +32,20 @@ public class LoginAction extends HttpServlet {
 		String password = request.getParameter("password"); 
 		// If user phone not exist, forward to UsrNotExist
 		if(userDao == null)
+		{
 			response.sendRedirect("../page_not_found.jsp");
+			return;
+		}
 		if(!userDao.has(phone))
+		{
 			response.sendRedirect("../user_not_found.jsp");
+			return;
+		}
 
 		// Call ReportDao to get the object
 		User user = userDao.getUser(phone);
-		if(password == user.password)
-			response.sendRedirect("servlet/DisplayAction");
+		if( password.equals(user.getPassword()) )
+			response.sendRedirect("DisplayAction");
 		else
 			response.sendRedirect("../user_not_found.jsp");
 	}

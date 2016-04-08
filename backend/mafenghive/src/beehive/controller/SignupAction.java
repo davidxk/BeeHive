@@ -12,7 +12,7 @@ import beehive.bean.User;
 import beehive.dao.UserDao;
 
 public class SignupAction extends HttpServlet {
-	public UserDao userDao;
+	private UserDao userDao = new UserDao();
 	public SignupAction() {
 		super();
 	}
@@ -39,7 +39,7 @@ public class SignupAction extends HttpServlet {
 		userDao.save( new User(phone, nickname, password) );
 
 		// Forward to DisplayAction
-		response.sendRedirect("servlet/DisplayAction");
+		response.sendRedirect("DisplayAction");
 	}
 
 }

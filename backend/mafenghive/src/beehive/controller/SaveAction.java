@@ -40,7 +40,7 @@ public class SaveAction extends HttpServlet {
 		}
 		
 		// Read report data from <form>
-		String keys[] = { "pho", "tim", "co1", "tem", "hum", "noi", "ult" };
+		String keys[] = { "pho", "co1", "tem", "hum", "noi", "ult" };
 		Vector<String> values = new Vector<String>();
 		for(String key: keys)
 			values.add( request.getParameter(key) );
@@ -53,11 +53,11 @@ public class SaveAction extends HttpServlet {
 		// Initiate a Report object
 		Date timestamp = new Date();
 		Report report = new Report(phone, timestamp,
+				Float.parseFloat(values.get(1)),
 				Float.parseFloat(values.get(2)),
 				Float.parseFloat(values.get(3)),
 				Float.parseFloat(values.get(4)),
-				Float.parseFloat(values.get(5)),
-				Float.parseFloat(values.get(6))
+				Float.parseFloat(values.get(5))
 				);
 
 		// Call ReportDao to save the object
