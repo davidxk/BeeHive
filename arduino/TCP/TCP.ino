@@ -31,7 +31,7 @@ void connect()
 	Serial.println("AT+SAPBR=3,1,\"APN\",\"cmnet\"");
 	delay(500);
 	Serial.println("AT+SAPBR=1,1");
-	delay(3000);
+	delay(7000);
 	Serial.println("AT+HTTPINIT");
 	delay(500);
 }
@@ -72,23 +72,28 @@ void loop()
 	noi_value = analogRead(sound_ain);
 	// Ultrviolet
 	ult_value=analogRead(uv_ain);
+      // Phone Number
+	const long pho_value = 111;
+	
 
 	// Make http request
 	String post = "AT+HTTPPARA=\"URL\",\"http://1.waspwo.applinzi.com/servlet/SaveAction?";
-	Serial.println(post);
+	Serial.print(post);
 
 	const int n_key = 7;
+	delay(500);
 	String keys[] = { "pho", "co1", "tem", "hum", "noi", "ult" };
-	String vals[] = { 111, char(co1_value), char(DHT11.temperature,
-			char(DHT11.humidity), char(noi_value), char(ult_value) };
+	long vals[] = { pho_value, co1_value, DHT11.temperature,
+			DHT11.humidity, noi_value, ult_value };
 	for(int i=0; i<n_key; i++)
 	{
 		if(i != 0)
 			Serial.print("&");
-		Serial.print(keys[i]+"="+vals[i]);
+		Serial.print(keys[i]+"=");
+		Serial.print(vals[i]);
 	}
 	Serial.println("\"");
-
+	delay(500);
 	// Send request to server
 	Serial.println("AT+HTTPACTION=0");
 	delay(5000);
