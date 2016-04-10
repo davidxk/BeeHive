@@ -20,5 +20,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
   </head>
   
-	<body>Http Error: 404<br>Page not found. ^_^</body>
+	<body>Username not found. <br>Have a good day. ^_*</body>
 </html>

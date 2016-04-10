@@ -35,11 +35,14 @@ public class SignupAction extends HttpServlet {
 		//response.sendRedirect("??");
 
 		// Initiate a User object
+		User user = new User(phone, nickname, password);
+		
 		// Call ReportDao to save the object
-		userDao.save( new User(phone, nickname, password) );
+		userDao.save( user );
 
 		// Forward to DisplayAction
-		response.sendRedirect("DisplayAction");
+		request.setAttribute("user", user);
+		request.getRequestDispatcher("DisplayAction").forward(request, response);
 	}
 
 }
