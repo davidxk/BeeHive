@@ -54,7 +54,7 @@ public class displayServ extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         String device = request.getParameter("device");
         response.setContentType("image/jpeg");
-		JFreeChart chart;
+		JFreeChart chart = null;
 		final int N_KEYS = 5;
 		final String keys[] = { "co", "temperature", "humidity", "noise", "ultraviolet" };
 		final String rangeAxisLabels[] = {
@@ -76,7 +76,7 @@ public class displayServ extends HttpServlet {
 	}
 
 	// Create chart object JFreeChart
-    public static JFreeChart createChart(DefaultCategoryDataset linedataset, String chartTitle, String rangeAxisLabel) 
+    private JFreeChart createChart(DefaultCategoryDataset linedataset, String chartTitle, String rangeAxisLabel) 
 	{
         //定义图表对象
         JFreeChart chart = ChartFactory.createLineChart(chartTitle, // chart title
@@ -99,7 +99,7 @@ public class displayServ extends HttpServlet {
     }
 	
     // Create Dataset
-    public static DefaultCategoryDataset createDataset(String series, List<ChartPoint> pointSet) 
+    private DefaultCategoryDataset createDataset(String series, List<ChartPoint> pointSet) 
 	{
         DefaultCategoryDataset linedataset = new DefaultCategoryDataset();
 		for(ChartPoint point: pointSet)
@@ -107,17 +107,17 @@ public class displayServ extends HttpServlet {
 
         return linedataset;
     }
-	public static List<ChartPoint> getSpecifiedAttribute(String key, List<Report> reports)
+	private List<ChartPoint> getSpecifiedAttribute(String key, List<Report> reports)
 	{
-		List<ChartPoint> pointSet;
-		for(Report report: report)
-			switch(key[0])
+		List<ChartPoint> pointSet = null;
+		for(Report report: reports)
+			switch(key.charAt(0))
 			{
-				case 'c': pointSet.add(ChartPoint(report.timestamp, report.co1)); break;
-				case 't': pointSet.add(ChartPoint(report.timestamp, report.temperature)); break;
-				case 'h': pointSet.add(ChartPoint(report.timestamp, report.humidity)); break;
-				case 'n': pointSet.add(ChartPoint(report.timestamp, report.noise)); break;
-				case 'u': pointSet.add(ChartPoint(report.timestamp, report.ultraviolet)); break;
+				case 'c': pointSet.add(new ChartPoint(report.timestamp.toString(), report.co)); break;
+				case 't': pointSet.add(new ChartPoint(report.timestamp.toString(), report.temperature)); break;
+				case 'h': pointSet.add(new ChartPoint(report.timestamp.toString(), report.humidity)); break;
+				case 'n': pointSet.add(new ChartPoint(report.timestamp.toString(), report.noise)); break;
+				case 'u': pointSet.add(new ChartPoint(report.timestamp.toString(), report.ultraviolet)); break;
 			}
 		return pointSet;
 	}

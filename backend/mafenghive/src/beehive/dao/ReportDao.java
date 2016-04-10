@@ -87,10 +87,5 @@ public class ReportDao {
  		//System.out.println(retResult);
 		return reportList;
 	}
-	
-	
-	
-	
-	
 	 
 }
