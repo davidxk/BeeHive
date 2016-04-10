@@ -44,7 +44,6 @@ public class ReportDao {
 	 		Map<String, Object> param = new HashMap<String,Object>();
 	 		param.put("phone", phone);
 	 		param.put("number", n);
-	 		//???
 	 		List<Report> reportList = session.selectList(statement,param);
 	 		//手动提交事务
 	 		session.commit();
@@ -60,11 +59,10 @@ public class ReportDao {
         
 	 		String statement = "beehive.mapper.reportMapper.getTimedReport";//映射sql的标识字符串
 	 		//insert
-	 		Map<String, Object> param = new HashMap<String,Object>();
+	 		Map<String, String> param = new HashMap<String, String>();
 	 		param.put("phone", phone);
 	 		param.put("startTime", startTime);
 	 		param.put("endTime", endTime);
-	 		//???
 	 		List<Report> reportList = session.selectList(statement,param);
 	 		//手动提交事务
 	 		session.commit();
@@ -74,6 +72,21 @@ public class ReportDao {
 			return reportList;
 	}
 	
+	public List<Report> getAll(String phone)
+	{
+ 		SqlSession session = MyBatisUtil.getSqlSession(true);
+        
+ 		String statement = "beehive.mapper.reportMapper.getAll";//映射sql的标识字符串
+ 		//insert
+     
+ 		List<Report> reportList = session.selectList(statement,phone);
+ 		//手动提交事务
+ 		session.commit();
+ 		//使用SqlSession执行完SQL之后需要关闭SqlSession
+ 		session.close();
+ 		//System.out.println(retResult);
+		return reportList;
+	}
 	
 	
 	
