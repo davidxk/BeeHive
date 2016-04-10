@@ -32,8 +32,8 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>GetAllAction</servlet-name>
-    <servlet-class>beehive.controller.GetAllAction</servlet-class>
+    <servlet-name>displayServ</servlet-name>
+    <servlet-class>beehive.controller.displayServ</servlet-class>
   </servlet>
 
 
@@ -57,8 +57,8 @@
     <url-pattern>/servlet/LoginAction</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>GetAllAction</servlet-name>
-    <url-pattern>/servlet/GetAllAction</url-pattern>
+    <servlet-name>displayServ</servlet-name>
+    <url-pattern>/servlet/display.do</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

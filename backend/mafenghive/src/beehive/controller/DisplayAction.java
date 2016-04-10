@@ -31,20 +31,20 @@ public class DisplayAction extends HttpServlet {
 		
 		String choice = request.getParameter("choice");
 		List<Report> reports = null;
-		if(choice == null);
-			//reports = reportDao.getLatestReport(user.getPhone(), 30);
-		else if(choice == "latest")
+		if(choice == null)
+			reports = reportDao.getLatestReport(user.getPhone(), 30);
+		else if(choice.equals("latest"))
 		{
-			//request.getParameter("days");
-			//reports = reportDao.getLatestReport(user.getPhone(), 30);
+			request.getParameter("days");
+			reports = reportDao.getLatestReport(user.getPhone(), 30);
 		}
-		else if(choice == "all");
+		else if(choice.equals("all"));
 			//reports = reportDao.getAll(user.phone);
-		else if(choice == "timed")
+		else if(choice.equals("timed"))
 		{
 			Date start = (Date)request.getAttribute("start_time");
 			Date end = (Date)request.getAttribute("end_time");
-			//reports = reportDao.getTimedReport(user.phone, start, end);
+			reports = reportDao.getTimedReport(user.phone, start.toString(), end.toString());
 		}
 		request.setAttribute("reports", reports);
 		request.getRequestDispatcher("../display_page.jsp").forward(request, response);		
