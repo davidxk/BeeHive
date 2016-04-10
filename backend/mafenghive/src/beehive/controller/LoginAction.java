@@ -1,7 +1,6 @@
 package beehive.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
@@ -45,7 +44,7 @@ public class LoginAction extends HttpServlet {
 		// Call ReportDao to get the object
 		User user = userDao.getUser(phone);
 		if( password.equals(user.getPassword()) )
-			response.sendRedirect("DisplayAction");
+			request.getRequestDispatcher("DisplayAction").forward(request, response);
 		else
 			response.sendRedirect("../user_not_found.jsp");
 	}
