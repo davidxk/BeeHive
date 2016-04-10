@@ -3,6 +3,9 @@ package beehive.dao;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import beehive.bean.Report;
 import beehive.util.MyBatisUtil;
@@ -29,7 +32,46 @@ public class ReportDao {
 	        session.commit();
 	        //使用SqlSession执行完SQL之后需要关闭SqlSession
 	        session.close();
-	        System.out.println(retResult);
+	        //System.out.println(retResult);
+	}
+	
+	public List<Report> getLatestReport(String phone, int n)
+	{
+	 		SqlSession session = MyBatisUtil.getSqlSession(true);
+        
+	 		String statement = "beehive.mapper.reportMapper.getLatestReport";//映射sql的标识字符串
+	 		//insert
+	 		Map<String, Object> param = new HashMap<String,Object>();
+	 		param.put("phone", phone);
+	 		param.put("number", n);
+	 		//???
+	 		List<Report> reportList = session.selectList(statement,param);
+	 		//手动提交事务
+	 		session.commit();
+	 		//使用SqlSession执行完SQL之后需要关闭SqlSession
+	 		session.close();
+	 		//System.out.println(retResult);
+			return reportList;
+	}
+	
+	public List<Report> getTimedReport(String phone, String startTime, String endTime)
+	{
+	 		SqlSession session = MyBatisUtil.getSqlSession(true);
+        
+	 		String statement = "beehive.mapper.reportMapper.getTimedReport";//映射sql的标识字符串
+	 		//insert
+	 		Map<String, Object> param = new HashMap<String,Object>();
+	 		param.put("phone", phone);
+	 		param.put("startTime", startTime);
+	 		param.put("endTime", endTime);
+	 		//???
+	 		List<Report> reportList = session.selectList(statement,param);
+	 		//手动提交事务
+	 		session.commit();
+	 		//使用SqlSession执行完SQL之后需要关闭SqlSession
+	 		session.close();
+	 		//System.out.println(retResult);
+			return reportList;
 	}
 	
 	
