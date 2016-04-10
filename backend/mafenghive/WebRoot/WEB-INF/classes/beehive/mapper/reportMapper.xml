@@ -13,8 +13,19 @@
         根据id查询得到一个user对象
      -->
     <select id="getReport" parameterType="int" 
-        resultType="beehive.bean.Report">
-        select * from report where id=#{id}
+        resultType="List">
+        select * from report where phone=#{phone}
+    </select>
+    
+    <select id="getLatestReport"  
+        resultType="List">
+        select * from report where phone=#{0} order by timestamp desc
+        limit #{1}
+    </select>
+    
+   <select id="getTimedReport"  
+        resultType="List">
+        select * from report where timestamp between #{0} and #{1}
     </select>
     
     <insert id="addReport" parameterType="beehive.bean.Report">
