@@ -3,38 +3,26 @@ package beehive.controller;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.jdbc.JDBCXYDataset;
-import org.jfree.data.time.Month;
-
-import org.jfree.data.time.TimeSeries;
-import org.jfree.data.time.TimeSeriesCollection;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.ui.RectangleInsets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.*;
 import java.io.IOException;
 import java.sql.*;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Calendar;
-import java.util.Random;
 
 import beehive.bean.*;
+import beehive.dao.ReportDao;
 
 public class displayServ extends HttpServlet {
-	public class ChartPoint{
+	public class ChartPoint
+	{
 		public ChartPoint(String x, float y)
 		{
 			this.x = x;
@@ -44,7 +32,9 @@ public class displayServ extends HttpServlet {
 		public String x;
 	}
 	
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private ReportDao reportDao = new ReportDao();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
         doGet(request, response);
     }
 
@@ -57,22 +47,42 @@ public class displayServ extends HttpServlet {
 		JFreeChart chart = null;
 		final int N_KEYS = 5;
 		final String keys[] = { "co", "temperature", "humidity", "noise", "ultraviolet" };
-		final String rangeAxisLabels[] = {
-		   	"density", "Celsius degree", "decibel", "%", "Vol" };
+		final String rangeAxisLabels[] = { "density", "Celsius degree", 
+			"decibel", "%", "Vol" };
 		for(int i=0; i<N_KEYS; i++)
 			if(device.equals(keys[i]))
 			{
-				List<Report> reports = (List<Report>) request.getAttribute("reports");
-				DefaultCategoryDataset dataset = createDataset(keys[i], getSpecifiedAttrbute(reports));
+				List<Report> reports = getReport(request);
+				DefaultCategoryDataset dataset = createDataset(keys[i], getSpecifiedAttribute(keys[i], reports));
 				chart = createChart(dataset, keys[i]+" situation", rangeAxisLabels[i]);
 				break;
 			}
 		ChartUtilities.writeChartAsJPEG(response.getOutputStream(),chart,800,600);
     }
 
-	private List<ChartPoint> getSpecifiedAttrbute(List<Report> reports) {
-		// TODO Auto-generated method stub
-		return null;
+	private List<Report> getReport(HttpServletRequest request) 
+	{
+		List<Report> reports = null;
+		User user = (User) request.getSession().getAttribute("user");
+		String choice = request.getParameter("choice");
+		String phone = (String) request.getAttribute("phone");
+
+		if(choice == null)
+			reports = reportDao.getLatestReport(phone, 30);
+		else if(choice.equals("latest"))
+		{
+			request.getParameter("days");
+			reports = reportDao.getLatestReport(phone, 30);
+		}
+		else if(choice.equals("all"));
+			//reports = reportDao.getAll(user.phone);
+		else if(choice.equals("timed"))
+		{
+			Date start = (Date)request.getAttribute("start_time");
+			Date end = (Date)request.getAttribute("end_time");
+			reports = reportDao.getTimedReport(phone, start.toString(), end.toString());
+		}
+		return reports;
 	}
 
 	// Create chart object JFreeChart
@@ -109,7 +119,7 @@ public class displayServ extends HttpServlet {
     }
 	private List<ChartPoint> getSpecifiedAttribute(String key, List<Report> reports)
 	{
-		List<ChartPoint> pointSet = null;
+		List<ChartPoint> pointSet = new ArrayList<ChartPoint>();
 		for(Report report: reports)
 			switch(key.charAt(0))
 			{

@@ -43,6 +43,8 @@ public class LoginAction extends HttpServlet {
 
 		// Call ReportDao to get the object
 		User user = userDao.getUser(phone);
+		request.setAttribute("user", user);
+		request.getSession().setAttribute("user", user);
 		if( password.equals(user.getPassword()) )
 			request.getRequestDispatcher("DisplayAction").forward(request, response);
 		else

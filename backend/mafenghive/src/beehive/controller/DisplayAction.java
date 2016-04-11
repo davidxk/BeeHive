@@ -20,8 +20,14 @@ public class DisplayAction extends HttpServlet {
 		super();
 	}
 
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		/*
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
@@ -47,6 +53,7 @@ public class DisplayAction extends HttpServlet {
 			reports = reportDao.getTimedReport(user.phone, start.toString(), end.toString());
 		}
 		request.setAttribute("reports", reports);
+		*/
 		request.getRequestDispatcher("../display_page.jsp").forward(request, response);		
 	}
 }

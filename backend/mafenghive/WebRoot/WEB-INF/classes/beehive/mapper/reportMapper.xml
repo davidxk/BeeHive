@@ -12,20 +12,19 @@
     <!-- 
         根据id查询得到一个user对象
      -->
-    <select id="getReport" parameterType="int" 
-        resultType="List">
+    <select id="getAll" parameterType="java.lang.String" resultType="beehive.bean.Report">
         select * from report where phone=#{phone}
     </select>
     
-    <select id="getLatestReport"  
-        resultType="List">
-        select * from report where phone=#{0} order by timestamp desc
-        limit #{1}
+    <select id="getLatestReport"  parameterType="java.util.Map"
+        resultType="beehive.bean.Report">
+        select * from report where phone=#{phone} order by timestamp desc
+        limit #{number}
     </select>
     
-   <select id="getTimedReport"  
-        resultType="List">
-        select * from report where timestamp between #{0} and #{1}
+   <select id="getTimedReport"    parameterType="java.util.Map"
+        resultType="beehive.bean.Report">
+        select * from report where phone=#{phone} and timestamp between #{startTime} and #{endTime}
     </select>
     
     <insert id="addReport" parameterType="beehive.bean.Report">

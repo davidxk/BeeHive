@@ -31,8 +31,8 @@ public class SignupAction extends HttpServlet {
 		String password = request.getParameter("password");
 
 		// If user phone exists, forward to UsrExists
-		//if(userDao.has(phone))
-		//response.sendRedirect("??");
+		if(userDao.has(phone))
+			response.sendRedirect("../page_not_found.jsp");
 
 		// Initiate a User object
 		User user = new User(phone, nickname, password);
@@ -41,6 +41,7 @@ public class SignupAction extends HttpServlet {
 		userDao.save( user );
 
 		// Forward to DisplayAction
+		request.getSession().setAttribute("user", user);
 		request.setAttribute("user", user);
 		request.getRequestDispatcher("DisplayAction").forward(request, response);
 	}
