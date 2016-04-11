@@ -1,0 +1,10 @@
+.select_list{
+	display: inline-block;
+	text-align: left;
+	width: 180px;
+	padding-left: 2px;
+}
+
+.select_list span{
+	color: #333;
+}

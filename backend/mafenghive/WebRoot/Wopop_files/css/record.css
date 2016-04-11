@@ -1,0 +1,26 @@
+.login_m{
+	text-align: center;
+	width: 500px;
+}
+
+.login_m > img{
+	width: 200px;
+	margin-bottom: 20px;
+}
+
+.btn_group{
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+.btn_group button{
+	border-radius: 7px;
+	background: #854ba6;
+	border-color: #854ba6;
+	margin-right: 10px;
+}
+
+.btn_group button:hover{
+	background: #5b3371;
+	border-color: #5b3371;
+}
