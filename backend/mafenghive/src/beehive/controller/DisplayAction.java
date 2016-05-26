@@ -54,6 +54,36 @@ public class DisplayAction extends HttpServlet {
 		}
 		request.setAttribute("reports", reports);
 		*/
-		request.getRequestDispatcher("../display_page.jsp").forward(request, response);		
+		
+		List<Report> reports = getReport(request);
+		request.getSession().setAttribute("reports", reports);
+		request.setAttribute("reports", reports);
+		request.getRequestDispatcher("./display_page.jsp").forward(request, response);		
+	}
+	
+	private List<Report> getReport(HttpServletRequest request) 
+	{
+		List<Report> reports = null;
+		//User user = (User) request.getSession().getAttribute("user");
+		User user = (User) request.getSession().getAttribute("user");
+		String choice = request.getParameter("choice");
+		String phone = user.getPhone();
+
+		if(choice == null)
+			reports = reportDao.getLatestReport(phone, 30);
+		else if(choice.equals("latest"))
+		{
+			request.getParameter("days");
+			reports = reportDao.getLatestReport(phone, 30);
+		}
+		else if(choice.equals("all"));
+			//reports = reportDao.getAll(user.phone);
+		else if(choice.equals("timed"))
+		{
+			Date start = (Date)request.getAttribute("start_time");
+			Date end = (Date)request.getAttribute("end_time");
+			reports = reportDao.getTimedReport(phone, start.toString(), end.toString());
+		}
+		return reports;
 	}
 }

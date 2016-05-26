@@ -1,6 +1,8 @@
 package beehive.bean;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
 	// Member variable
 	public String phone;
 	public String nickname;

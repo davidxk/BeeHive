@@ -87,5 +87,17 @@ public class ReportDao {
  		//System.out.println(retResult);
 		return reportList;
 	}
+	
+	public Report getNewReport(String phone){
+		SqlSession session = MyBatisUtil.getSqlSession(true);
+ 		String statement = "beehive.mapper.reportMapper.getNewReport";//映射sql的标识字符串
+ 		Report report = session.selectOne(phone);
+ 		//手动提交事务
+ 		session.commit();
+ 		//使用SqlSession执行完SQL之后需要关闭SqlSession
+ 		session.close();
+ 		//System.out.println(retResult);
+		return report;
+	}
 	 
 }

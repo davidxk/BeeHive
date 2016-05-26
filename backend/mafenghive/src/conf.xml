@@ -7,10 +7,11 @@
             <!-- 配置数据库连接信息 -->
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver" />
-              <property name="url" value="jdbc:mysql://localhost:3306/bee_sensor" /> 
+             <!--  <property name="url" value="jdbc:mysql://xcfnxcvsbltk.rds.sae.sina.com.cn:10626/bee_sensor" /> -->
+                 <property name="url" value="jdbc:mysql://localhost:3306/bee_sensor" /> 
                <!-- <property name="url" value="jdbc:mysql://wulkktkbfdkx.rds.sae.sina.com.cn:28096/bee_sensor" /> --> 
-                <property name="username" value="root" />
-                <property name="password" value="ran936366" />
+                <property name="username" value="ranf999" />
+                <property name="password" value="936366" />
             </dataSource>
         </environment>
     </environments>

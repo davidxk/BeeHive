@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="../Wopop_files/css/register.css">
 </head>
 <!--body>
-<form action="/servlet/SignupAction" method="post">
+<form action="/SignupAction" method="post">
     用户名:<input type="text" name="username" required/><br/>
 		性别:<input type="text" name="nickname" required/><br>
     密码:<input type="password" name="password" required/><br/>
@@ -68,7 +68,7 @@
     </div>
 
     <div class="login_padding" id="login_model">
-        <form action="/servlet/SignupAction" method="post">
+        <form action="/SignupAction" method="post">
             <div class="form-group">
                 <!--input type="text" name="username" class="form-control" placeholder="请输入用户名（必须以字母开头）"required /-->
                 <input type="text" name="phone" class="form-control" placeholder="请输入手机号"required />

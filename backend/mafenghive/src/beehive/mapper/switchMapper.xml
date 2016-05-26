@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="beehive.mapper.switchMapper">
+
+	<select id="getStatus" parameterType="int" resultType="beehive.bean.Switch">
+		select * from switch where id=#{id}
+	</select>
+	
+	<update id="updateStatus" parameterType="int">
+		update switch set status=#{status} where id=1
+	</update>
+	
+
+    
+</mapper>

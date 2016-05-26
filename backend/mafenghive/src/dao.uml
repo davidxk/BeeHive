@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA" name="dao">
+  <packagedElement xmi:type="uml:Package" xmi:id="_ThljcBpjEeaVgeFquCxkRQ" name="beehive">
+    <packagedElement xmi:type="uml:Package" xmi:id="_ThmKgBpjEeaVgeFquCxkRQ" name="dao">
+      <packagedElement xmi:type="uml:Class" xmi:id="_ThmxkBpjEeaVgeFquCxkRQ" name="DeviceDao">
+        <ownedAttribute xmi:id="_ToKskBpjEeaVgeFquCxkRQ" name="resource" visibility="package">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_ToKskRpjEeaVgeFquCxkRQ" value="conf.xml"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ToNv4BpjEeaVgeFquCxkRQ" name="is" visibility="package" type="_TmkxIRpjEeaVgeFquCxkRQ"/>
+        <ownedAttribute xmi:id="_ToQMIBpjEeaVgeFquCxkRQ" name="sessionFactory" visibility="package" type="_Tml_QBpjEeaVgeFquCxkRQ"/>
+        <ownedOperation xmi:id="_ToSBURpjEeaVgeFquCxkRQ" name="has" visibility="public">
+          <ownedParameter xmi:id="_ToSBUhpjEeaVgeFquCxkRQ" name="phone">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_ToSBUxpjEeaVgeFquCxkRQ" name="return" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ToT2gBpjEeaVgeFquCxkRQ" name="save" visibility="public">
+          <ownedParameter xmi:id="_ToT2gRpjEeaVgeFquCxkRQ" name="device" type="_TmkxJBpjEeaVgeFquCxkRQ"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ToVrsBpjEeaVgeFquCxkRQ" name="fix" visibility="public">
+          <ownedParameter xmi:id="_ToVrsRpjEeaVgeFquCxkRQ" name="device" type="_TmkxJBpjEeaVgeFquCxkRQ"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ToXg4BpjEeaVgeFquCxkRQ" name="getDeviceInfo" visibility="public">
+          <ownedParameter xmi:id="_ToXg4RpjEeaVgeFquCxkRQ" name="phone">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_ToXg4hpjEeaVgeFquCxkRQ" name="return" type="_TmkxJRpjEeaVgeFquCxkRQ" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Th8v0BpjEeaVgeFquCxkRQ" name="ReportDao">
+        <ownedAttribute xmi:id="_TodAcBpjEeaVgeFquCxkRQ" name="resource" visibility="package">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_TodAcRpjEeaVgeFquCxkRQ" value="conf.xml"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_TokVMBpjEeaVgeFquCxkRQ" name="is" visibility="package" type="_TmkxIRpjEeaVgeFquCxkRQ"/>
+        <ownedAttribute xmi:id="_Torp8BpjEeaVgeFquCxkRQ" name="sessionFactory" visibility="package" type="_Tml_QBpjEeaVgeFquCxkRQ"/>
+        <ownedOperation xmi:id="_ToutQBpjEeaVgeFquCxkRQ" name="save" visibility="public">
+          <ownedParameter xmi:id="_ToutQRpjEeaVgeFquCxkRQ" name="report" type="_Tm8kkhpjEeaVgeFquCxkRQ"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_Toy-sBpjEeaVgeFquCxkRQ" name="getLatestReport" visibility="public">
+          <ownedParameter xmi:id="_Toy-sRpjEeaVgeFquCxkRQ" name="phone">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_Toy-shpjEeaVgeFquCxkRQ" name="n">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_Toy-sxpjEeaVgeFquCxkRQ" name="return" type="_Tm8kkBpjEeaVgeFquCxkRQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_To2pEBpjEeaVgeFquCxkRQ" name="getTimedReport" visibility="public">
+          <ownedParameter xmi:id="_To2pERpjEeaVgeFquCxkRQ" name="phone">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_To2pEhpjEeaVgeFquCxkRQ" name="startTime">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_To2pExpjEeaVgeFquCxkRQ" name="endTime">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_To2pFBpjEeaVgeFquCxkRQ" name="return" type="_Tm8kkBpjEeaVgeFquCxkRQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_To6TcBpjEeaVgeFquCxkRQ" name="getAll" visibility="public">
+          <ownedParameter xmi:id="_To6TcRpjEeaVgeFquCxkRQ" name="phone">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_To6TchpjEeaVgeFquCxkRQ" name="return" type="_Tm8kkBpjEeaVgeFquCxkRQ" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_TiC2cBpjEeaVgeFquCxkRQ" name="UserDao">
+        <ownedAttribute xmi:id="_TpAaEBpjEeaVgeFquCxkRQ" name="resource" visibility="package">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_TpAaERpjEeaVgeFquCxkRQ" value="conf.xml"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_TpErgBpjEeaVgeFquCxkRQ" name="is" visibility="package" type="_TmkxIRpjEeaVgeFquCxkRQ"/>
+        <ownedAttribute xmi:id="_TpJkABpjEeaVgeFquCxkRQ" name="sessionFactory" visibility="package" type="_Tml_QBpjEeaVgeFquCxkRQ"/>
+        <ownedOperation xmi:id="_TpMAQBpjEeaVgeFquCxkRQ" name="has" visibility="public">
+          <ownedParameter xmi:id="_TpMAQRpjEeaVgeFquCxkRQ" name="phone">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_TpMAQhpjEeaVgeFquCxkRQ" name="return" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_TpOcgBpjEeaVgeFquCxkRQ" name="save" visibility="public">
+          <ownedParameter xmi:id="_TpOcgRpjEeaVgeFquCxkRQ" name="user" type="_TnJY4BpjEeaVgeFquCxkRQ"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_TpSG4BpjEeaVgeFquCxkRQ" name="getUser" visibility="public">
+          <ownedParameter xmi:id="_TpSG4RpjEeaVgeFquCxkRQ" name="phone">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_TpSG4hpjEeaVgeFquCxkRQ" name="return" type="_TnJY4BpjEeaVgeFquCxkRQ" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_TiHu8BpjEeaVgeFquCxkRQ" name="SwitchDao">
+        <ownedAttribute xmi:id="_TpZboBpjEeaVgeFquCxkRQ" name="resource" visibility="package">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_TpZboRpjEeaVgeFquCxkRQ" value="conf.xml"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_Tpce8BpjEeaVgeFquCxkRQ" name="is" visibility="package" type="_TmkxIRpjEeaVgeFquCxkRQ"/>
+        <ownedAttribute xmi:id="_Tpe7MBpjEeaVgeFquCxkRQ" name="sessionFactory" visibility="package" type="_Tml_QBpjEeaVgeFquCxkRQ"/>
+        <ownedOperation xmi:id="_TpgwYBpjEeaVgeFquCxkRQ" name="has" visibility="public">
+          <ownedParameter xmi:id="_TpgwYRpjEeaVgeFquCxkRQ" name="phone">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_TpgwYhpjEeaVgeFquCxkRQ" name="return" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_TpilkBpjEeaVgeFquCxkRQ" name="save" visibility="public">
+          <ownedParameter xmi:id="_TpilkRpjEeaVgeFquCxkRQ" name="switchInfo" type="_TmkxJRpjEeaVgeFquCxkRQ"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_TplB0BpjEeaVgeFquCxkRQ" name="fix" visibility="public">
+          <ownedParameter xmi:id="_TplB0RpjEeaVgeFquCxkRQ" name="switchInfo" type="_TmkxJRpjEeaVgeFquCxkRQ"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_TpmP8BpjEeaVgeFquCxkRQ" name="getSwitchInfo" visibility="public">
+          <ownedParameter xmi:id="_TpmP8RpjEeaVgeFquCxkRQ" name="phone">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_TpmP8hpjEeaVgeFquCxkRQ" name="return" type="_TmkxJRpjEeaVgeFquCxkRQ" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_TmkxIxpjEeaVgeFquCxkRQ" name="bean">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_TmkxJBpjEeaVgeFquCxkRQ" name="Device"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_TmkxJRpjEeaVgeFquCxkRQ" name="Switch"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Tm8kkhpjEeaVgeFquCxkRQ" name="Report"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_TnJY4BpjEeaVgeFquCxkRQ" name="User"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_TmlYMBpjEeaVgeFquCxkRQ" name="util">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_TmlYMRpjEeaVgeFquCxkRQ" name="MyBatisUtil"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_TmkKEBpjEeaVgeFquCxkRQ" name="java">
+    <packagedElement xmi:type="uml:Package" xmi:id="_TmkKERpjEeaVgeFquCxkRQ" name="io">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_TmkxIBpjEeaVgeFquCxkRQ" name="IOException"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_TmkxIRpjEeaVgeFquCxkRQ" name="InputStream"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_TmkxIhpjEeaVgeFquCxkRQ" name="Reader"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Tm79gBpjEeaVgeFquCxkRQ" name="util">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Tm79gRpjEeaVgeFquCxkRQ" name="HashMap"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Tm8kkBpjEeaVgeFquCxkRQ" name="List"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Tm8kkRpjEeaVgeFquCxkRQ" name="Map"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_TmlYMhpjEeaVgeFquCxkRQ" name="org">
+    <packagedElement xmi:type="uml:Package" xmi:id="_TmlYMxpjEeaVgeFquCxkRQ" name="apache">
+      <packagedElement xmi:type="uml:Package" xmi:id="_TmlYNBpjEeaVgeFquCxkRQ" name="ibatis">
+        <packagedElement xmi:type="uml:Package" xmi:id="_TmlYNRpjEeaVgeFquCxkRQ" name="io">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_TmlYNhpjEeaVgeFquCxkRQ" name="Resources"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_TmlYNxpjEeaVgeFquCxkRQ" name="session">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_TmlYOBpjEeaVgeFquCxkRQ" name="SqlSession"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_Tml_QBpjEeaVgeFquCxkRQ" name="SqlSessionFactory"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_Tml_QRpjEeaVgeFquCxkRQ" name="SqlSessionFactoryBuilder"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

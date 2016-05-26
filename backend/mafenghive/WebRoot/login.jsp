@@ -65,7 +65,7 @@
 
     <div class="login_padding" id="login_model">
 
-      <form action="/servlet/LoginAction" name="LoginForm" method="post">
+      <form action="LoginAction" name="LoginForm" method="post">
 
           <!--<p style="font-size: 18px">用户登录</p>-->
           <div class="form-group">

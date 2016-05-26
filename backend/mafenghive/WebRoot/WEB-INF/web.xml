@@ -5,6 +5,8 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <display-name></display-name>
+  
+ <distributable />
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -35,6 +37,18 @@
     <servlet-name>displayServ</servlet-name>
     <servlet-class>beehive.controller.displayServ</servlet-class>
   </servlet>
+    <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateAction</servlet-name>
+    <servlet-class>beehive.controller.UpdateAction</servlet-class>
+  </servlet>
+    <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>StatusAction</servlet-name>
+    <servlet-class>beehive.controller.StatusAction</servlet-class>
+  </servlet>
 
 
 
@@ -42,25 +56,33 @@
 
   <servlet-mapping>
     <servlet-name>SaveAction</servlet-name>
-    <url-pattern>/servlet/SaveAction</url-pattern>
+    <url-pattern>/SaveAction</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>DisplayAction</servlet-name>
-    <url-pattern>/servlet/DisplayAction</url-pattern>
+    <url-pattern>/DisplayAction</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>SignupAction</servlet-name>
-    <url-pattern>/servlet/SignupAction</url-pattern>
+    <url-pattern>/SignupAction</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>LoginAction</servlet-name>
-    <url-pattern>/servlet/LoginAction</url-pattern>
+    <url-pattern>/LoginAction</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>displayServ</servlet-name>
-    <url-pattern>/servlet/display.do</url-pattern>
+    <url-pattern>/display.do</url-pattern>
+  </servlet-mapping>	
+    <servlet-mapping>
+    <servlet-name>UpdateAction</servlet-name>
+    <url-pattern>/UpdateAction</url-pattern>
+  </servlet-mapping>	
+    <servlet-mapping>
+    <servlet-name>StatusAction</servlet-name>
+    <url-pattern>/StatusAction</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
 </web-app>

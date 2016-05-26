@@ -57,15 +57,17 @@ public class displayServ extends HttpServlet {
 				chart = createChart(dataset, keys[i]+" situation", rangeAxisLabels[i]);
 				break;
 			}
-		ChartUtilities.writeChartAsJPEG(response.getOutputStream(),chart,800,600);
+		ChartUtilities.writeChartAsJPEG(response.getOutputStream(),chart,400,300);
     }
 
+    
+    
 	private List<Report> getReport(HttpServletRequest request) 
 	{
 		List<Report> reports = null;
 		User user = (User) request.getSession().getAttribute("user");
 		String choice = request.getParameter("choice");
-		String phone = (String) request.getAttribute("phone");
+		String phone = user.getPhone();
 
 		if(choice == null)
 			reports = reportDao.getLatestReport(phone, 30);
@@ -88,7 +90,7 @@ public class displayServ extends HttpServlet {
 	// Create chart object JFreeChart
     private JFreeChart createChart(DefaultCategoryDataset linedataset, String chartTitle, String rangeAxisLabel) 
 	{
-        //定义图表对象
+        //
         JFreeChart chart = ChartFactory.createLineChart(chartTitle, // chart title
                 "time", // domain axis label
 				rangeAxisLabel, // range axis label

@@ -4,8 +4,10 @@ String output;
 
 // Gas Dht
 #include <dht11.h>
+
+
 dht11 DHT11;
-#define DHT11PIN 1
+#define DHT11PIN 4
 
 // CO1
 int gas_din = 0;
@@ -44,7 +46,7 @@ void setup()
 	digitalWrite(2,LOW);//Enable the GSM mode 
 	digitalWrite(3,HIGH);//Disable the GPS mode
 	delay(200);
-	Serial.begin(115200); //set the baud rate
+	Serial.begin(9600); //set the baud rate
 	delay(1000);//call ready
 
 	// GAS DHT
@@ -77,7 +79,7 @@ void loop()
 	
 
 	// Make http request
-	String post = "AT+HTTPPARA=\"URL\",\"http://1.waspwo.applinzi.com/servlet/SaveAction?";
+	String post = "AT+HTTPPARA=\"URL\",\"http://1.waspwo.applinzi.com/SaveAction?";
 	Serial.print(post);
 
 	const int n_key = 7;
@@ -96,6 +98,16 @@ void loop()
 	delay(500);
 	// Send request to server
 	Serial.println("AT+HTTPACTION=0");
+	delay(500);
+	if(DHT11.temperature>=32)
+	{
+		Serial.write(";");
+	}
+	if(DHT11.temperature<=30)
+	{
+		Serial.write("[");
+	}
+
 	delay(5000);
 }
 

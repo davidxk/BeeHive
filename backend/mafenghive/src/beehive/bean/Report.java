@@ -1,8 +1,9 @@
 package beehive.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Report {
+public class Report implements Serializable{
 	// Member variables
 	public String phone;
 	public Date timestamp;

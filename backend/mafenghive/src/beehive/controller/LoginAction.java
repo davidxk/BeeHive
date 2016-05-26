@@ -32,22 +32,24 @@ public class LoginAction extends HttpServlet {
 		// If user phone not exist, forward to UsrNotExist
 		if(userDao == null)
 		{
-			response.sendRedirect("../page_not_found.jsp");
+			response.sendRedirect("./page_not_found.jsp");
 			return;
 		}
 		if(!userDao.has(phone))
 		{
-			response.sendRedirect("../user_not_found.jsp");
+			response.sendRedirect("./user_not_found.jsp");
 			return;
 		}
 
 		// Call ReportDao to get the object
+		
 		User user = userDao.getUser(phone);
 		request.setAttribute("user", user);
 		request.getSession().setAttribute("user", user);
 		if( password.equals(user.getPassword()) )
-			request.getRequestDispatcher("DisplayAction").forward(request, response);
+			response.sendRedirect("DisplayAction");
+			//request.getRequestDispatcher("DisplayAction").forward(request, response);
 		else
-			response.sendRedirect("../user_not_found.jsp");
+			response.sendRedirect("./user_not_found.jsp");
 	}
 }
